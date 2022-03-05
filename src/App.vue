@@ -1,15 +1,15 @@
 <template>  <!---->
-<div>hi</div>
- <Lucy/>
+<div>导航栏 |
+  <router-link to="/">Lucy</router-link> | 
+  <router-link to="/xxx">Lucy2</router-link>
+  </div>
+<hr/>
+ <router-view/>   <!--路由说要展示什么组件就在这里展示-->
 </template>
 
 <script>
-import Lucy from './components/Lucy.vue'  //从这里引入的Lucy组件
 
 export default {
   name: 'App',
-  components: {
-    Lucy:Lucy
-  }
 }
 </script>
