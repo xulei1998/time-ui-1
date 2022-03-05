@@ -1,6 +1,7 @@
 import { createApp } from "vue"; //创建app实例的重要函数
+
 import App from "./App.vue"; //app.vue组件的引入
-import "./index.css";
+import "./index.scss";
 import { createWebHashHistory, createRouter } from "vue-router";
 import Home from "./views/Home.vue";
 import Doc from "./views/Doc.vue";
