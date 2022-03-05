@@ -2,8 +2,8 @@ import { createApp } from "vue"; //创建app实例的重要函数
 import App from "./App.vue"; //app.vue组件的引入
 import "./index.css";
 import { createWebHashHistory, createRouter } from "vue-router";
-import Lucy from "./components/Lucy.vue";
-import Lucy2 from "./components/Lucy2.vue";
+import Home from "./views/Home.vue";
+import Doc from "./views/Doc.vue";
 
 const history = createWebHashHistory();
 const router = createRouter({
@@ -12,11 +12,11 @@ const router = createRouter({
     //当用户访问根路径时，渲染Lucy组件
     {
       path: "/",
-      component: Lucy,
+      component: Home,
     },
     {
-      path: "/xxx",
-      component: Lucy2,
+      path: "/doc",
+      component: Doc,
     },
   ],
 });
