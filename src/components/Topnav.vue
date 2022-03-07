@@ -1,30 +1,46 @@
 <template>
-  <div class="topnav">
-    <div class="logo">LOGO</div>  <!--点击logo 使得menuVisible的布尔值变化-->
-    <ul class="menu">
-      <li>菜单1</li>
-      <li>菜单2</li>
-    </ul>
-    <span class="toggleAside" @click="toggleMenu"></span>  <!--手机版 Topnav的左边的按钮-->
-  </div>
+<div class="topnav">
+  <router-link to="/" class="logo">
+    <svg class="icon">
+      <use xlink:href="#icon-time"></use>
+    </svg>  
+  </router-link>  <!--点击logo 使得menuVisible的布尔值变化-->
+  <ul class="menu">
+    <li><router-link to="/doc">文档</router-link></li>
+  </ul>
+  <svg v-if="toggleMenuButtonVisible" class="toggleAside" @click="toggleMenu">
+    <use xlink:href="#icon-menu">
+    </use>  
+  </svg>  <!--手机版 Topnav的左边的按钮-->
+</div>
 </template>
 
 <script lang="ts">
 import { inject, Ref } from "vue";
 export default {
+    props: {
+      toggleMenuButtonVisible: {  /* 是否显示红色按钮 */
+      type: Boolean,
+      default: false  //默认不显示
+    }
+  },
   setup() {
-    const menuVisible=inject<Ref<boolean>>("menuVisible")  //get
+    const menuVisible=inject < Ref < boolean >> ("menuVisible")  //get
     const toggleMenu = ()=>{
       menuVisible.value = !menuVisible.value;  //取反
     }
-    return { toggleMenu };  //return之后template才能获取这个
+    return { 
+      toggleMenu 
+    };  //return之后template才能获取这个
   },
 };
 </script>
 
 <style lang="scss" scoped>
+$color: #007974;
+
 .topnav {
-  background: pink;
+  color:$color;
   display: flex;
   padding: 16px;
   /*position: relative;  是相对定位  才能加z-index  其余的是0 */
@@ -35,23 +51,26 @@ export default {
   z-index: 10;
   justify-content: center;
   align-items: center;
-  > .logo {
+  >.logo {
     max-width: 6em;
     margin-right: auto;
+    >svg {
+      width:32px;
+      height: 32px;
+    }
   }
-  > .menu {
+  >.menu {
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
-    > li {
+    >li {
       margin: 0 1em;
     }
   }
-  > .toggleAside {
+  >.toggleAside {
     display: inline-block;
-    width: 24px;
-    height: 24px;
-    background: red;
+    width: 32px;
+    height: 32px;
     position: absolute;
     left: 16px;
     top: 50%;
@@ -59,17 +78,15 @@ export default {
     display: none;  /* 默认是不显示的 */
   }
   @media (max-width:500px) {  /* 如果宽度小于500px */
-    > .menu {
+    >.menu {
       display: none;
     }
-    > .logo {
+    >.logo {
       margin: 0 auto;
     }
-    > .toggleAside {
+    >.toggleAside {
       display: inline-block;  /* 小于500px时，是显示的  */
     }
-
-    
   }
 }
 </style> 
