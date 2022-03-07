@@ -1,23 +1,29 @@
 <template>
 <template v-if="visible">
   <Teleport to="body">
-    <div class="gulu-dialog-overlay" @click="onClickOverlay"></div>
+    <!--遮罩层-->
+    <div class="gulu-dialog-overlay" @click="onClickOverlay">  <!--点击遮罩层。触发onClickOverlay事件-->
+    </div>
+    <!--本体：弹出对话框，分三部分-->
     <div class="gulu-dialog-wrapper">
       <div class="gulu-dialog">
-        <header>
-          <slot name="title" />
-          <span @click="close" class="gulu-dialog-close"></span>
+
+        <header> <!--标题-->
+          <slot name="title" />  <!--使用插槽，在DialogDemo.vue里写标题和内容-->
+          <span @click="close" class="gulu-dialog-close"></span> <!--点击×，触发close事件-->
         </header>
-        <main>
+        
+        <main>  <!--内容主体-->
           <slot name="content" />
         </main>
-        <footer>
-          <Button level="main" @click="ok">OK</Button>
-          <Button @click="cancel">Cancel</Button>
+        
+        <footer>   <!--右下角两个按钮-->
+          <Button level="main" @click="ok">OK</Button> <!--ok按钮-->
+          <Button @click="cancel">Cancel</Button><!--cancel按钮-->
         </footer>
       </div>
     </div>
-    </Teleport>
+  </Teleport>
 </template>
 </template>
 
@@ -25,12 +31,12 @@
 import Button from "./Button.vue";
 export default {
   props: {
-    visible: {
-      type: Boolean,
+    visible: {       //visible属性
+      type: Boolean,  //默认值 不可见
       default: false
     },
     closeOnClickOverlay: {
-      type: Boolean,
+      type: Boolean,  //默认是点击遮罩层，关闭
       default: true
     },
     ok: {
@@ -41,19 +47,19 @@ export default {
     }
   },
   components: {
-     Button,
+     Button,  //引用本层的button，这样才可以用<Button>标签
   },
   setup(props, context) {
-    const close = () => {
+    const close = () => {  //用户点击×，调用close，触发emit事件
       context.emit('update:visible', false)
     }
     const onClickOverlay = () => {
-      if (props.closeOnClickOverlay) {
-        close()
+      if (props.closeOnClickOverlay) {  //如果值为true
+        close()  //会点击遮罩层，关闭弹窗
       }
     }
     const ok = () => {
-      if (props.ok?.() !== false) {
+      if (props.ok?.() !== false) {  //如果props.ok存在且 props.ok()===true
         close()
       }
     }

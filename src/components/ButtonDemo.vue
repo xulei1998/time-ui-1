@@ -1,33 +1,33 @@
 <template>
   <div>Button示例</div>
-  <h1>示例</h1>
+  <h1>示例1</h1>
   <div>
-    <Button @click="onClick">你好</Button>
-    <Button theme="button">你好</Button>
-    <Button theme="link">你好</Button>
-    <Button theme="text">你好</Button>
+    <Button @click="onClick">你好</Button> <!--纯按钮-->
+    <Button theme="button">你好</Button>  <!--有theme属性的按钮-->
+    <Button theme="link">你好</Button>  <!--链接-->
+    <Button theme="text">你好</Button> <!--文本-->
   </div>
-  <h1>示例2</h1>
+  <h1>示例2</h1>  <!--按钮尺寸不同-->
   <div>
-    <div>
+    <div>   <!--都是button的按钮-->
       <Button size="big">大大大</Button>
       <Button>普普通</Button>
       <Button size="small">小小小</Button>
     </div>
-    <div>
+    <div>   <!--都是link的按钮-->
       <Button theme="link" size="big">大大大</Button>
-      <Button theme="link">普普通</Button>
-      <Button size="small" theme="link">小小小</Button>
+      <Button theme="link">普通</Button>
+      <Button theme="link" size="small">小小小</Button>
     </div>
-    <div>
-      <Button size="big" theme="text">大大大</Button>
+    <div>   <!--都是text的按钮-->
+      <Button theme="text"  size="big" >大大大</Button>
       <Button theme="text">普普通</Button>
-      <Button size="small" theme="text">小小小</Button>
+      <Button theme="text" size="small">小小小</Button>
     </div>
   </div>
 
 
-  <h1>示例3</h1>
+  <h1>示例3</h1> <!--按钮尺寸不同-->
   <div>
     <div>
       <Button level="main">主要按钮</Button>
@@ -60,9 +60,11 @@
 </template> 
 
 <script lang="ts">
-import Button from "../lib/Button.vue";
+import Button from "../lib/Button.vue"; //引入Button，这样在上面template里面可以使用Button按钮
 export default {
-  components: { Button },
+  components: { 
+    Button:Button   //可以缩写成Button
+  },
   setup() {
     const onClick = () => {
       console.log("hi");

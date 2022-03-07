@@ -1,41 +1,41 @@
 <template>
   <button class="gulu-button" :class="classes"  :disabled="disabled">
-    <span v-if="loading" class="gulu-loadingIndicator"></span>
-    <slot />
+    <span v-if="loading" class="gulu-loadingIndicator"></span>  <!--加载中的转圈，只出现在loading中的-->
+    <slot />  <!--插槽 这样渲染到页面的就是ButtonDemo中的<Button>里的文字了-->
   </button>
 </template>
 <script lang="ts">
 import { computed } from "vue";
 export default {
   props: {
-    theme: {
-      type: String,
-      default: "button",
+    theme: {  //样式属性：button/link/text
+      type: String,  //类型
+      default: "button", //默认值是button
     },
-    size: {
+    size: {  //尺寸属性：normal/big/size
       type: String,
       default: "normal",
     },
-    level: {
+    level: { //等级属性：main/normal/danger
       type: String,
       default:"normal",
     },
-    disabled: {
+    disabled: { //禁用按钮
       type: Boolean,
       default: false,
     },
-    loading: {
+    loading: {  //加载按钮：默认
       type: Boolean,
       default: false
     }
   },
   
   setup(props) {
-    const { theme, size,level } = props;
+    const { theme, size,level } = props;  //获取到这些属性
     const classes = computed(() => {
       return {
-        [`gulu-theme-${theme}`]: theme,
-        [`gulu-size-${size}`]: size,
+        [`gulu-theme-${theme}`]: theme,  //可能有gulu-theme-button/link/text
+        [`gulu-size-${size}`]: size,  //gulu-size-big/small/normal
         [`gulu-level-${level}`]: level,
       };
     });
@@ -51,6 +51,8 @@ $blue: #40a9ff;
 $radius: 4px;
 $red:red;
 $grey: gray;
+
+ /*  */
 .gulu-button {
   box-sizing: border-box;
   height: $h;
@@ -80,6 +82,8 @@ $grey: gray;
   &::-moz-focus-inner {
     border: 0;
   }
+
+  /*示例一 */
    &.gulu-theme-link {
     border-color: transparent;
     box-shadow: none;
@@ -98,6 +102,7 @@ $grey: gray;
       background: darken(white, 5%);
     }
   }
+  /*示例2 */
   &.gulu-size-big {
     font-size: 24px;
     height: 48px;
@@ -108,6 +113,7 @@ $grey: gray;
     height: 20px;
     padding: 0 4px;
   }
+   /*示例3 */
   &.gulu-theme-button {
     &.gulu-level-main {
       background: $blue;
@@ -155,6 +161,9 @@ $grey: gray;
       }
     }
   }
+
+
+   /*示例4 */
   &.gulu-theme-button {
     &[disabled] {
       cursor: not-allowed;
@@ -170,6 +179,7 @@ $grey: gray;
       color: $grey;
     }
   }
+   /*示例五 加载中的转圈圈*/
   > .gulu-loadingIndicator{
     width: 14px;
     height: 14px;
@@ -182,7 +192,7 @@ $grey: gray;
     animation: gulu-spin 1s infinite linear;
   }
 }
-@keyframes gulu-spin {
+@keyframes gulu-spin {  /*转圈圈的动画360度旋转 */
   0%{transform: rotate(0deg)} 
   100%{transform: rotate(360deg)} 
 }

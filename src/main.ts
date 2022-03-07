@@ -1,5 +1,5 @@
-import "./index.scss";
 import "./lib/gulu.scss";
+import "./index.scss";
 import { createApp } from "vue"; //创建app实例的重要函数
 import App from "./App.vue"; //app.vue组件的引入
 import { router } from "./router";
