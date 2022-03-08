@@ -6,11 +6,15 @@ import ButtonDemo from "./components/ButtonDemo.vue";
 import DialogDemo from "./components/DialogDemo.vue";
 import TabsDemo from "./components/TabsDemo.vue";
 import DocDemo from "./components/DocDemo.vue";
-import Intro from "./views/Intro.vue";
-import GetStarted from "./views/GetStarted.vue";
-import Install from "./views/Install.vue";
+import { h } from "vue";
+import Markdown from "./components/Markdown.vue";
+
+import intro from "./markdown/intro.md";
+import getStarted from "./markdown/get-started.md";
+import install from "./markdown/install.md";
 
 const history = createWebHashHistory();
+const md = (string) => h(Markdown, { content: string, key: string });
 export const router = createRouter({
   history: history,
   routes: [
@@ -20,10 +24,10 @@ export const router = createRouter({
       component: Doc,
       children: [
         //添加Doc.vue的子组件的路由
-        { path: "", component: DocDemo }, //Doc默认页面
-        { path: "intro", component: Intro }, //介绍页面
-        { path: "get-started", component: GetStarted }, //开始页面
-        { path: "install", component: Install }, //安装页面
+        { path: "", redirect: "/doc/intro" }, //Doc默认页面
+        { path: "intro", component: md(intro) }, //介绍页面
+        { path: "get-started", component: md(getStarted) }, //开始页面
+        { path: "install", component: md(install) }, //安装页面
         { path: "switch", component: SwitchDemo }, //Switch组件
         { path: "button", component: ButtonDemo },
         { path: "dialog", component: DialogDemo },

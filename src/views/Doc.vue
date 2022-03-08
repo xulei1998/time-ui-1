@@ -36,6 +36,7 @@ export default {
 };
 </script> 
 <style lang="scss" scoped>
+$aside-index : 10;
 /*  简单高亮选中的侧边栏
 .router-link-active { 
   text-decoration: underline;
@@ -71,7 +72,7 @@ export default {
 }
 
 aside {
-  background: rgba(172, 240, 235, 0.5);
+  background: rgb(172, 240, 235);
   width: 150px;
   padding: 16px 0;
   position: fixed;
@@ -79,6 +80,7 @@ aside {
   left: 0;
   padding-top: 70px;
   height: 100%;
+  z-index: $aside-index;
   > h2 {
     margin-bottom: 4px;
     padding: 0 16px;

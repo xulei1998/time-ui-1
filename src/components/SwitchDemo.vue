@@ -1,21 +1,59 @@
 <template>
-  <div>
-    <Switch v-model:value="bool"/>  <!--使用Switch组件 :value变量接收 bool变量的值 不加:传入的就是“bool”字符串 -->  
-  </div>
+<div>
+  <h1>Switch 组件示例 </h1>
+  <Demo :component="Switch1Demo" />
+  <Demo :component="Switch2Demo" />
+
+</div>
 </template>
 
 
 
 <script lang="ts">  //不写这一行，后面无法引入.vue文件
-import Switch from '../lib/Switch.vue' //引入Switch组件
 import { ref } from 'vue'
+import Switch1Demo from './Switch1.demo.vue'
+import Switch2Demo from './Switch2.demo.vue'
+import Demo from './Demo.vue'
+
+//console.log(Switch1Demo.__sourceCode)  //打印源代码
 export default {
   components: {
-    Switch
+    Demo
   },
-  setup(){   /* Switch组件 变量bool默认值是false */
-    const bool = ref(false)
-    return {bool}
+  setup(){  
+    return {
+      Switch1Demo,
+      Switch2Demo,
+    }
   } 
 }
 </script> 
+
+<style lang="scss" scoped>
+$border-color: #d9d9d9;
+.demo {
+  border: 1px solid $border-color;
+  margin: 16px 0 32px;
+  >h2 {
+    font-size: 20px;
+    padding: 8px 16px;
+    border-bottom: 1px solid $border-color;
+  }
+  &-component {
+    padding: 16px;
+  }
+  &-actions {
+    padding: 8px 16px;
+    border-top: 1px dashed $border-color;
+  }
+  &-code {
+    padding: 8px 16px;
+    border-top: 1px dashed $border-color;
+    >pre {
+      line-height: 1.1;
+      font-family: Consolas, 'Courier New', Courier, monospace;
+      margin: 0;
+    }
+  }
+}
+</style>

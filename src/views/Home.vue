@@ -6,7 +6,7 @@
       <h1>Time UI</h1>
       <h2>A concise UI framework</h2>
       <p class="actions">
-        <a href="https://github.com/xulei1998">Github</a>
+        <a href="https://github.com/xulei1998" target="_blank">Github</a>
         <router-link to="/doc">Start</router-link>   <!--使用router-link实现内部的跳转-->
       </p> 
     </div>
@@ -21,7 +21,7 @@
       <li>
         <svg><use xlink:href="#icon-ts"></use></svg>
         <h3>基于 TypeScript </h3>
-        <p>源代码采用 TypeScript 书写（非严格检查）</p>
+        <p>源代码采用 TypeScript 书写</p>
       </li>
       <li>
         <svg><use xlink:href="#icon-light"></use></svg>
@@ -53,18 +53,27 @@ $color: #007974;
 }
 .features {
   margin: 64px auto;
-  width: 400px;
+  padding: 0 16px;
   @media (min-width: 800px) {
     width: 800px;
+    >ul {
+      >li {
+        width: 50%;
+      }
+    }
   }
   @media (min-width: 1200px) {
     width: 1200px;
+    >ul {
+      >li {
+        width: 33.3333%;
+      }
+    }
   }
   >ul {
     display: flex;
     flex-wrap: wrap;
     >li {
-      width: 400px;
       margin: 16px 0;
       display: grid;
       justify-content: start;
